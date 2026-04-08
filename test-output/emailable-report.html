@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "https://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="https://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<title>TestNG Report</title>
+<style type="text/css">table {margin-bottom:10px;border-collapse:collapse;empty-cells:show}th,td {border:1px solid #009;padding:.25em .5em}th {vertical-align:bottom}td {vertical-align:top}table a {font-weight:bold}.stripe td {background-color: #E6EBF9}.num {text-align:right}.passedodd td {background-color: #3F3}.passedeven td {background-color: #0A0}.skippedodd td {background-color: #DDD}.skippedeven td {background-color: #CCC}.failedodd td,.attn {background-color: #F33}.failedeven td,.stripe .attn {background-color: #D00}.stacktrace {white-space:pre;font-family:monospace}.totop {font-size:85%;text-align:center;border-bottom:2px solid #000}.invisible {display:none}</style>
+</head>
+<body>
+<table>
+<tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
+<tr><th colspan="8">Suite</th></tr>
+<tr><td><a href="#t0">Submit Order Test</a></td><td class="num">0</td><td class="num attn">4</td><td class="num">0</td><td class="num">0</td><td class="num">122</td><td></td><td></td></tr>
+<tr class="stripe"><td><a href="#t1">Error Validations Test</a></td><td class="num">0</td><td class="num attn">2</td><td class="num">0</td><td class="num">0</td><td class="num">7</td><td></td><td></td></tr>
+<tr><th>Total</th><th class="num">0</th><th class="num attn">6</th><th class="num">0</th><th class="num">0</th><th class="num">129</th><th colspan="2"></th></tr>
+</table>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Submit Order Test &#8212; failed (configuration methods)</th></tr><tr class="failedeven"><td rowspan="6">SebastianValenciaProjects.tests.SubmitOrderTest</td><td><a href="#m0">launchApplication</a></td><td rowspan="3">1775686541966</td><td rowspan="3">2</td></tr><tr class="failedeven"><td><a href="#m1">launchApplication</a></td></tr><tr class="failedeven"><td><a href="#m2">launchApplication</a></td></tr><tr class="failedeven"><td><a href="#m3">tearDown</a></td><td rowspan="3">1775686541978</td><td rowspan="3">1</td></tr><tr class="failedeven"><td><a href="#m4">tearDown</a></td></tr><tr class="failedeven"><td><a href="#m5">tearDown</a></td></tr><tr><th colspan="4">Submit Order Test &#8212; skipped</th></tr><tr class="skippedeven"><td rowspan="4">SebastianValenciaProjects.tests.SubmitOrderTest</td><td><a href="#m6">orderHistoryTest</a></td><td rowspan="1">1775686541989</td><td rowspan="1">0</td></tr><tr class="skippedeven"><td><a href="#m7">submitOrder</a></td><td rowspan="3">1775686541981</td><td rowspan="3">0</td></tr><tr class="skippedeven"><td><a href="#m8">submitOrder</a></td></tr><tr class="skippedeven"><td><a href="#m9">submitOrder</a></td></tr></tbody>
+<tbody id="t1"><tr><th colspan="4">Error Validations Test &#8212; failed (configuration methods)</th></tr><tr class="failedeven"><td rowspan="4">SebastianValenciaProjects.tests.ErrorValidationsTest</td><td><a href="#m10">launchApplication</a></td><td rowspan="2">1775686542171</td><td rowspan="2">0</td></tr><tr class="failedeven"><td><a href="#m11">launchApplication</a></td></tr><tr class="failedeven"><td><a href="#m12">tearDown</a></td><td rowspan="2">1775686542177</td><td rowspan="2">0</td></tr><tr class="failedeven"><td><a href="#m13">tearDown</a></td></tr><tr><th colspan="4">Error Validations Test &#8212; skipped</th></tr><tr class="skippedeven"><td rowspan="2">SebastianValenciaProjects.tests.ErrorValidationsTest</td><td><a href="#m14">LoginErrorValidation</a></td><td rowspan="1">1775686542172</td><td rowspan="1">0</td></tr><tr class="skippedeven"><td><a href="#m15">ProductErrorValidation</a></td><td rowspan="1">1775686542175</td><td rowspan="1">0</td></tr></tbody>
+</table>
+<h2>Submit Order Test</h2><h3 id="m0">SebastianValenciaProjects.tests.SubmitOrderTest#launchApplication</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.io.FileNotFoundException: /Users/sebastian.valencia/eclipse-workspace/SeleniumFrameworkDesign/src/main/java/SebastianValenciaProjects/SebastianValenciaProjects.Resources/GlobalData.properties (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.&lt;init&gt;(FileInputStream.java:159)
+	at java.base/java.io.FileInputStream.&lt;init&gt;(FileInputStream.java:112)
+	at SebastianValenciaProjects.TestComponents.BaseTest.initializeDriver(BaseTest.java:43)
+	at SebastianValenciaProjects.TestComponents.BaseTest.launchApplication(BaseTest.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+... Removed 29 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m1">SebastianValenciaProjects.tests.SubmitOrderTest#launchApplication</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.io.FileNotFoundException: /Users/sebastian.valencia/eclipse-workspace/SeleniumFrameworkDesign/src/main/java/SebastianValenciaProjects/SebastianValenciaProjects.Resources/GlobalData.properties (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.&lt;init&gt;(FileInputStream.java:159)
+	at java.base/java.io.FileInputStream.&lt;init&gt;(FileInputStream.java:112)
+	at SebastianValenciaProjects.TestComponents.BaseTest.initializeDriver(BaseTest.java:43)
+	at SebastianValenciaProjects.TestComponents.BaseTest.launchApplication(BaseTest.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+... Removed 29 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m2">SebastianValenciaProjects.tests.SubmitOrderTest#launchApplication</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.io.FileNotFoundException: /Users/sebastian.valencia/eclipse-workspace/SeleniumFrameworkDesign/src/main/java/SebastianValenciaProjects/SebastianValenciaProjects.Resources/GlobalData.properties (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.&lt;init&gt;(FileInputStream.java:159)
+	at java.base/java.io.FileInputStream.&lt;init&gt;(FileInputStream.java:112)
+	at SebastianValenciaProjects.TestComponents.BaseTest.initializeDriver(BaseTest.java:43)
+	at SebastianValenciaProjects.TestComponents.BaseTest.launchApplication(BaseTest.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+... Removed 29 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m3">SebastianValenciaProjects.tests.SubmitOrderTest#tearDown</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: Cannot invoke &quot;org.openqa.selenium.WebDriver.close()&quot; because &quot;this.driver&quot; is null
+	at SebastianValenciaProjects.TestComponents.BaseTest.tearDown(BaseTest.java:108)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+... Removed 30 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m4">SebastianValenciaProjects.tests.SubmitOrderTest#tearDown</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: Cannot invoke &quot;org.openqa.selenium.WebDriver.close()&quot; because &quot;this.driver&quot; is null
+	at SebastianValenciaProjects.TestComponents.BaseTest.tearDown(BaseTest.java:108)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+... Removed 30 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m5">SebastianValenciaProjects.tests.SubmitOrderTest#tearDown</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: Cannot invoke &quot;org.openqa.selenium.WebDriver.close()&quot; because &quot;this.driver&quot; is null
+	at SebastianValenciaProjects.TestComponents.BaseTest.tearDown(BaseTest.java:108)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+... Removed 30 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m6">SebastianValenciaProjects.tests.SubmitOrderTest#orderHistoryTest</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.Throwable: Method SebastianValenciaProjects.tests.SubmitOrderTest.orderHistoryTest() on instance SebastianValenciaProjects.tests.SubmitOrderTest@7de62196 depends on not successfully finished methods 
+[SebastianValenciaProjects.tests.SubmitOrderTest.submitOrder() on instance SebastianValenciaProjects.tests.SubmitOrderTest@7de62196]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+... Removed 18 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m7">SebastianValenciaProjects.tests.SubmitOrderTest#submitOrder</h3><table class="result"><tr class="param"><th>Parameter #1</th></tr><tr class="param stripe"><td>{password=Fenix198103+, product=ADIDAS ORIGINAL, email=bastian8103@gmail.com}</td></tr><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: Cannot invoke &quot;org.openqa.selenium.WebDriver.close()&quot; because &quot;this.driver&quot; is null
+	at SebastianValenciaProjects.TestComponents.BaseTest.tearDown(BaseTest.java:108)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+... Removed 30 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m8">SebastianValenciaProjects.tests.SubmitOrderTest#submitOrder</h3><table class="result"><tr class="param"><th>Parameter #1</th></tr><tr class="param stripe"><td>{password=Fenix198103+, product=ZARA COAT 3, email=bastian8103@gmail.com}</td></tr><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.io.FileNotFoundException: /Users/sebastian.valencia/eclipse-workspace/SeleniumFrameworkDesign/src/main/java/SebastianValenciaProjects/SebastianValenciaProjects.Resources/GlobalData.properties (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.&lt;init&gt;(FileInputStream.java:159)
+	at java.base/java.io.FileInputStream.&lt;init&gt;(FileInputStream.java:112)
+	at SebastianValenciaProjects.TestComponents.BaseTest.initializeDriver(BaseTest.java:43)
+	at SebastianValenciaProjects.TestComponents.BaseTest.launchApplication(BaseTest.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+... Removed 29 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m9">SebastianValenciaProjects.tests.SubmitOrderTest#submitOrder</h3><table class="result"><tr class="param"><th>Parameter #1</th></tr><tr class="param stripe"><td>{password=Fenix198103+, product=IPHONE 13 PRO, email=bastian8103@gmail.com}</td></tr><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: Cannot invoke &quot;org.openqa.selenium.WebDriver.close()&quot; because &quot;this.driver&quot; is null
+	at SebastianValenciaProjects.TestComponents.BaseTest.tearDown(BaseTest.java:108)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+... Removed 30 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Error Validations Test</h2><h3 id="m10">SebastianValenciaProjects.tests.ErrorValidationsTest#launchApplication</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.io.FileNotFoundException: /Users/sebastian.valencia/eclipse-workspace/SeleniumFrameworkDesign/src/main/java/SebastianValenciaProjects/SebastianValenciaProjects.Resources/GlobalData.properties (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.&lt;init&gt;(FileInputStream.java:159)
+	at java.base/java.io.FileInputStream.&lt;init&gt;(FileInputStream.java:112)
+	at SebastianValenciaProjects.TestComponents.BaseTest.initializeDriver(BaseTest.java:43)
+	at SebastianValenciaProjects.TestComponents.BaseTest.launchApplication(BaseTest.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+... Removed 29 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m11">SebastianValenciaProjects.tests.ErrorValidationsTest#launchApplication</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.io.FileNotFoundException: /Users/sebastian.valencia/eclipse-workspace/SeleniumFrameworkDesign/src/main/java/SebastianValenciaProjects/SebastianValenciaProjects.Resources/GlobalData.properties (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.&lt;init&gt;(FileInputStream.java:159)
+	at java.base/java.io.FileInputStream.&lt;init&gt;(FileInputStream.java:112)
+	at SebastianValenciaProjects.TestComponents.BaseTest.initializeDriver(BaseTest.java:43)
+	at SebastianValenciaProjects.TestComponents.BaseTest.launchApplication(BaseTest.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+... Removed 29 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m12">SebastianValenciaProjects.tests.ErrorValidationsTest#tearDown</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: Cannot invoke &quot;org.openqa.selenium.WebDriver.close()&quot; because &quot;this.driver&quot; is null
+	at SebastianValenciaProjects.TestComponents.BaseTest.tearDown(BaseTest.java:108)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+... Removed 30 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m13">SebastianValenciaProjects.tests.ErrorValidationsTest#tearDown</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: Cannot invoke &quot;org.openqa.selenium.WebDriver.close()&quot; because &quot;this.driver&quot; is null
+	at SebastianValenciaProjects.TestComponents.BaseTest.tearDown(BaseTest.java:108)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+... Removed 30 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m14">SebastianValenciaProjects.tests.ErrorValidationsTest#LoginErrorValidation</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.io.FileNotFoundException: /Users/sebastian.valencia/eclipse-workspace/SeleniumFrameworkDesign/src/main/java/SebastianValenciaProjects/SebastianValenciaProjects.Resources/GlobalData.properties (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.&lt;init&gt;(FileInputStream.java:159)
+	at java.base/java.io.FileInputStream.&lt;init&gt;(FileInputStream.java:112)
+	at SebastianValenciaProjects.TestComponents.BaseTest.initializeDriver(BaseTest.java:43)
+	at SebastianValenciaProjects.TestComponents.BaseTest.launchApplication(BaseTest.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+... Removed 29 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m15">SebastianValenciaProjects.tests.ErrorValidationsTest#ProductErrorValidation</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.io.FileNotFoundException: /Users/sebastian.valencia/eclipse-workspace/SeleniumFrameworkDesign/src/main/java/SebastianValenciaProjects/SebastianValenciaProjects.Resources/GlobalData.properties (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.&lt;init&gt;(FileInputStream.java:159)
+	at java.base/java.io.FileInputStream.&lt;init&gt;(FileInputStream.java:112)
+	at SebastianValenciaProjects.TestComponents.BaseTest.initializeDriver(BaseTest.java:43)
+	at SebastianValenciaProjects.TestComponents.BaseTest.launchApplication(BaseTest.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+... Removed 29 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+</body>
+</html>
