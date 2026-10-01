@@ -1,0 +1,21 @@
+# Compiled class files
+target/
+*.class
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+
+# Locally generated report folders
+reports/
+test-output/
+
+# OS files
+.DS_Store
+
+# Logs
+*.log
