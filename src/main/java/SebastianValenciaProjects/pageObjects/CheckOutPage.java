@@ -39,7 +39,12 @@ public class CheckOutPage extends AbstractComponent{
 
 
 	public void selectCountry(String country) {
-		  countryToInput.click();
+		  try {
+			  countryToInput.click();
+		  } catch (WebDriverException e) {
+			  // Fallback: overlay may intercept the click, click via JavaScript instead
+			  ((JavascriptExecutor) driver).executeScript("arguments[0].click();", countryToInput);
+		  }
 		  countryToInput.clear();
 		  countryToInput.sendKeys(country);
 		  waitForElementToAppear(results);
