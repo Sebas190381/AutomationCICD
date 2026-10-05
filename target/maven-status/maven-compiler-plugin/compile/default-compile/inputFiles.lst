@@ -1,8 +1,8 @@
-/Users/sebastian.valencia/eclipse-workspace/SeleniumFrameworkDesign/src/main/java/SebastianValenciaProjects/AbstractComponents/AbstractComponent.java
-/Users/sebastian.valencia/eclipse-workspace/SeleniumFrameworkDesign/src/main/java/SebastianValenciaProjects/Resources/ExtentReportTestNG.java
-/Users/sebastian.valencia/eclipse-workspace/SeleniumFrameworkDesign/src/main/java/SebastianValenciaProjects/pageObjects/CartPage.java
-/Users/sebastian.valencia/eclipse-workspace/SeleniumFrameworkDesign/src/main/java/SebastianValenciaProjects/pageObjects/CheckOutPage.java
-/Users/sebastian.valencia/eclipse-workspace/SeleniumFrameworkDesign/src/main/java/SebastianValenciaProjects/pageObjects/ConfirmationPage.java
-/Users/sebastian.valencia/eclipse-workspace/SeleniumFrameworkDesign/src/main/java/SebastianValenciaProjects/pageObjects/LandingPage.java
-/Users/sebastian.valencia/eclipse-workspace/SeleniumFrameworkDesign/src/main/java/SebastianValenciaProjects/pageObjects/OrderPage.java
-/Users/sebastian.valencia/eclipse-workspace/SeleniumFrameworkDesign/src/main/java/SebastianValenciaProjects/pageObjects/ProductCatalogue.java
+/Users/sebastian.valencia/Documents/AutomationCICD/src/main/java/SebastianValenciaProjects/AbstractComponents/AbstractComponent.java
+/Users/sebastian.valencia/Documents/AutomationCICD/src/main/java/SebastianValenciaProjects/Resources/ExtentReportTestNG.java
+/Users/sebastian.valencia/Documents/AutomationCICD/src/main/java/SebastianValenciaProjects/pageObjects/CartPage.java
+/Users/sebastian.valencia/Documents/AutomationCICD/src/main/java/SebastianValenciaProjects/pageObjects/CheckOutPage.java
+/Users/sebastian.valencia/Documents/AutomationCICD/src/main/java/SebastianValenciaProjects/pageObjects/ConfirmationPage.java
+/Users/sebastian.valencia/Documents/AutomationCICD/src/main/java/SebastianValenciaProjects/pageObjects/LandingPage.java
+/Users/sebastian.valencia/Documents/AutomationCICD/src/main/java/SebastianValenciaProjects/pageObjects/OrderPage.java
+/Users/sebastian.valencia/Documents/AutomationCICD/src/main/java/SebastianValenciaProjects/pageObjects/ProductCatalogue.java
