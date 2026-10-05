@@ -46,7 +46,12 @@ public class AbstractComponent {
 
 
 	public OrderPage goToOrdersPage() {
-		myOrders.click();
+		try {
+			myOrders.click();
+		} catch (WebDriverException e) {
+			// Fallback: overlay may intercept the click, click via JavaScript instead
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", myOrders);
+		}
 		OrderPage orderPage = new OrderPage(driver);
 		return orderPage;
 	}
