@@ -67,14 +67,12 @@
     	<artifactId>testng</artifactId>
     </dependency>
     <dependency>
-    	<groupId>SebastianPractice</groupId>
-    	<artifactId>Selenium-java</artifactId>
-    	<version>0.0.1-SNAPSHOT</version>
+    	<groupId>com.fasterxml.jackson.core</groupId>
+    	<artifactId>jackson-databind</artifactId>
     </dependency>
     <dependency>
-    	<groupId>SebastianValenciaProjects</groupId>
-    	<artifactId>ExtentReports</artifactId>
-    	<version>0.0.1-SNAPSHOT</version>
+    	<groupId>com.aventstack</groupId>
+    	<artifactId>extentreports</artifactId>
     </dependency>
  	<dependency>
 	    <groupId>io.cucumber</groupId>

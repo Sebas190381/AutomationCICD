@@ -1,6 +1,8 @@
 package SebastianValenciaProjects.pageObjects;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -32,7 +34,12 @@ public class LandingPage extends AbstractComponent{
 	public ProductCatalogue loginApplication(String emailU, String passU) {
 		userEmail.sendKeys(emailU);
 		userPassword.sendKeys(passU);
-		submit.click();
+		try {
+			submit.click();
+		} catch (WebDriverException e) {
+			// Fallback: overlay may intercept the click, click via JavaScript instead
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", submit);
+		}
 		ProductCatalogue productCatalogue = new ProductCatalogue(driver);
 		return productCatalogue;
 	}
