@@ -23,7 +23,7 @@ public class CheckOutPage extends AbstractComponent{
 		PageFactory.initElements(driver, this);
 		}
 
-	@FindBy(css="[placeholder='Select Country']")
+	@FindBy(id="country-input-field-v2")
 	private WebElement countryToInput;
 
 	@FindBy(xpath="//button[contains(@class,ta-item)][2]")
