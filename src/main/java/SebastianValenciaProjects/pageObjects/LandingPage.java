@@ -32,7 +32,9 @@ public class LandingPage extends AbstractComponent{
 	public ProductCatalogue loginApplication(String emailU, String passU) {
 		userEmail.sendKeys(emailU);
 		userPassword.sendKeys(passU);
-		submit.click();
+		// Use JS click to avoid ElementClickInterceptedException in headless CI
+		// (overlays or smaller viewport can block the native click on Linux runners)
+		jsClick(submit);
 		ProductCatalogue productCatalogue = new ProductCatalogue(driver);
 		return productCatalogue;
 	}

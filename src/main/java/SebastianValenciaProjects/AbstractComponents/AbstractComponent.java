@@ -3,6 +3,7 @@ package SebastianValenciaProjects.AbstractComponents;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -40,6 +41,16 @@ public class AbstractComponent {
 	public void waitForElementToDisappear(WebElement webE){
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofMinutes(5));
 		wait.until(ExpectedConditions.invisibilityOf(webE));
+	}
+
+	/**
+	 * Clicks an element via JavaScript executor.
+	 * Use this instead of element.click() when running headless (CI) to avoid
+	 * ElementClickInterceptedException caused by overlays or viewport differences.
+	 */
+	public void jsClick(WebElement element) {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", element);
 	}
 
 
