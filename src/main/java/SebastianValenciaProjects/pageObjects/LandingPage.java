@@ -1,5 +1,6 @@
 package SebastianValenciaProjects.pageObjects;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -41,7 +42,10 @@ public class LandingPage extends AbstractComponent{
 
 	public String getErrorMessage(){
 		waitForWebElementToAppear(errorMessage);
-		return errorMessage.getText();
+		// Use JS textContent instead of getText() to get the full message
+		// regardless of animation state or viewport clipping in headless CI
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		return ((String) js.executeScript("return arguments[0].textContent;", errorMessage)).trim();
 	}
 
 	public void goTo() {

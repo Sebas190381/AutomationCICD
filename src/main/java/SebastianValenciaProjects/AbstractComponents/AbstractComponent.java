@@ -55,13 +55,13 @@ public class AbstractComponent {
 
 
 	public OrderPage goToOrdersPage() {
-		myOrders.click();
+		jsClick(myOrders);
 		OrderPage orderPage = new OrderPage(driver);
 		return orderPage;
 	}
 
 	public CartPage goToCartPage() {
-		cartHeader.click();
+		jsClick(cartHeader);
 		CartPage cartPage = new CartPage(driver);
 		return cartPage;
 	}
