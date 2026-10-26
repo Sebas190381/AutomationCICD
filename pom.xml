@@ -83,15 +83,11 @@
       <version>2.0.17</version>
     </dependency>
 
+    <!-- ExtentReports — pulled from Maven Central via dependencyManagement above -->
     <dependency>
-    	<groupId>SebastianPractice</groupId>
-    	<artifactId>Selenium-java</artifactId>
-    	<version>0.0.1-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-    	<groupId>SebastianValenciaProjects</groupId>
-    	<artifactId>ExtentReports</artifactId>
-    	<version>0.0.1-SNAPSHOT</version>
+      <groupId>com.aventstack</groupId>
+      <artifactId>extentreports</artifactId>
+      <version>5.1.2</version>
     </dependency>
  	<dependency>
 	    <groupId>io.cucumber</groupId>
