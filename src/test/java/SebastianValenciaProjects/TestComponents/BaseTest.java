@@ -27,10 +27,23 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import SebastianValenciaProjects.pageObjects.LandingPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+// Fix Warning 1: install the JUL→SLF4J bridge so Selenium's Java Util Logging
+// warnings (e.g. CDP version mismatch) are routed through SLF4J and suppressed
+// by the log levels defined in simplelogger.properties
+import org.slf4j.bridge.SLF4JBridgeHandler;
+
 public class BaseTest {
 
 	public WebDriver driver;
 	public LandingPage landingPage;
+
+	// Static initializer: runs once when the class is loaded.
+	// Removes the default JUL console handler and installs the SLF4J bridge
+	// so all java.util.logging output is controlled by simplelogger.properties.
+	static {
+		SLF4JBridgeHandler.removeHandlersForRootLogger();
+		SLF4JBridgeHandler.install();
+	}
 
 
 

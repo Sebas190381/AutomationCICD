@@ -66,13 +66,32 @@
     	<groupId>org.testng</groupId>
     	<artifactId>testng</artifactId>
     </dependency>
+
+    <!-- Fix Warning 2: SLF4J no providers — provides a simple console logger -->
     <dependency>
-    	<groupId>com.fasterxml.jackson.core</groupId>
-    	<artifactId>jackson-databind</artifactId>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>2.0.17</version>
+    </dependency>
+
+    <!-- Fix Warning 1: routes Java Util Logging (JUL) through SLF4J so that
+         the CDP version mismatch WARNING from Selenium (which uses JUL) is
+         controlled by simplelogger.properties and suppressed at ERROR level -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jul-to-slf4j</artifactId>
+      <version>2.0.17</version>
+    </dependency>
+
+    <dependency>
+    	<groupId>SebastianPractice</groupId>
+    	<artifactId>Selenium-java</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
     </dependency>
     <dependency>
-    	<groupId>com.aventstack</groupId>
-    	<artifactId>extentreports</artifactId>
+    	<groupId>SebastianValenciaProjects</groupId>
+    	<artifactId>ExtentReports</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
     </dependency>
  	<dependency>
 	    <groupId>io.cucumber</groupId>
@@ -158,6 +177,12 @@
   </profiles>
   
   <build>
+    <!-- Include src/test/resources so simplelogger.properties is on the classpath -->
+    <testResources>
+      <testResource>
+        <directory>src/test/resources</directory>
+      </testResource>
+    </testResources>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->

@@ -17,7 +17,7 @@ public class ErrorValidationsTest extends BaseTest{
 		{
 			landingPage.loginApplication("bastian8103@gmail.com", "Fenix198103");
 
-			Assert.assertEquals(landingPage.getErrorMessage(), "Incorrect email or password.");
+			Assert.assertEquals("Incorrect", landingPage.getErrorMessage());
 		}
 
 		// TODO Auto-generated method stub

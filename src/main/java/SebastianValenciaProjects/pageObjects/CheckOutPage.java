@@ -1,9 +1,7 @@
 package SebastianValenciaProjects.pageObjects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -39,30 +37,13 @@ public class CheckOutPage extends AbstractComponent{
 
 
 	public void selectCountry(String country) {
-		  try {
-			  countryToInput.click();
-		  } catch (WebDriverException e) {
-			  // Fallback: overlay may intercept the click, click via JavaScript instead
-			  ((JavascriptExecutor) driver).executeScript("arguments[0].click();", countryToInput);
-		  }
-		  countryToInput.clear();
-		  countryToInput.sendKeys(country);
+		  a.sendKeys(countryToInput,country).build().perform();
 		  waitForElementToAppear(results);
-		  try {
-			  countryToselect.click();
-		  } catch (WebDriverException e) {
-			  // Fallback: overlay may intercept the click, click via JavaScript instead
-			  ((JavascriptExecutor) driver).executeScript("arguments[0].click();", countryToselect);
-		  }
+		  countryToselect.click();
 	}
 
 	public ConfirmationPage goToSubmitPage(){
-		  try {
-			  submit.click();
-		  } catch (WebDriverException e) {
-			  // Fallback: overlay may intercept the click, click via JavaScript instead
-			  ((JavascriptExecutor) driver).executeScript("arguments[0].click();", submit);
-		  }
+		  submit.click();
 		  ConfirmationPage confirmationPage = new ConfirmationPage(driver);
 		  return confirmationPage;
 	}
