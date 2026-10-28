@@ -7,13 +7,19 @@
   <listener class-name="SebastianValenciaProjects.TestComponents.Listeners"></listener>
   </listeners>
   
+  <test thread-count="1" name="Login Test">
+    <classes>
+      <class name="SebastianValenciaProjects.tests.LoginTest"/>
+    </classes>
+  </test> <!-- Test -->
+
   <test thread-count="1" name="Submit Order Test">
     <classes>
       <class name="SebastianValenciaProjects.tests.SubmitOrderTest"/>
     </classes>
   </test> <!-- Test -->
   
-    <test thread-count="1" name="Error Validations Test">
+  <test thread-count="1" name="Error Validations Test">
     <classes>
       <class name="SebastianValenciaProjects.tests.ErrorValidationsTest"/>
     </classes>

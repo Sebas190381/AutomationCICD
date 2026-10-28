@@ -3,9 +3,7 @@ package SebastianValenciaProjects.pageObjects;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -34,18 +32,16 @@ public class CartPage extends AbstractComponent{
 
 	public  boolean verifyProductDisplay(String productName)
 	{
+		  // Wait for the cart items to render before checking (Angular page
+		  // transition is slower in headless CI, causing a race condition)
+		  waitForElementToAppear(item);
 		  List<WebElement> cartProducts = driver.findElements(By.cssSelector(".cartSection h3"));
 		  Boolean match = cartProducts.stream().anyMatch(cartPrduct-> cartPrduct.getText().equalsIgnoreCase(productName));
 		  return match;
 	}
 
 	public CheckOutPage goTocheckOut() {
-		try {
-			goToCheckout.click();
-		} catch (WebDriverException e) {
-			// Fallback: overlay may intercept the click, click via JavaScript instead
-			((JavascriptExecutor) driver).executeScript("arguments[0].click();", goToCheckout);
-		}
+		jsClick(goToCheckout);
 		CheckOutPage checkOutPage = new CheckOutPage(driver);
 		return checkOutPage;
 
