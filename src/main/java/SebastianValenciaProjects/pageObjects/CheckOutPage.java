@@ -37,7 +37,10 @@ public class CheckOutPage extends AbstractComponent{
 
 
 	public void selectCountry(String country) {
-		  a.sendKeys(countryToInput,country).build().perform();
+		  // Send keys directly to the element: Actions-based key delivery is
+		  // unreliable in headless Chrome (CI) and doesn't trigger Angular's
+		  // input handler, so the .ta-results dropdown never appears
+		  countryToInput.sendKeys(country);
 		  waitForElementToAppear(results);
 		  jsClick(countryToselect);
 	}

@@ -59,7 +59,11 @@ public class ProductCatalogue extends AbstractComponent{
 		// handler processes the event, so the product is never added to the cart
 		// (toast shows but cart stays empty). This button is never overlaid.
 		addToCartButton.click();
-		waitForElementToAppear(toastMessage);
+		// Wait for the ADD toast text, not just any toast: the "Login
+		// Successfully" toast is still visible at this point, so a plain
+		// visibility wait passes before the product is actually added
+		// (race condition that leaves the cart empty in headless CI)
+		waitForToastContainingText("Product Added To Cart");
 		waitForElementToDisappear(spinner);
 	}
 

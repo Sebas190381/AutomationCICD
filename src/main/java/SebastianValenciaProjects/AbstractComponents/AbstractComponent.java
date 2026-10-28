@@ -28,6 +28,8 @@ public class AbstractComponent {
 	@FindBy(css="[routerlink*='myorders']")
 	WebElement myOrders;
 
+	By toastContainer = By.cssSelector("#toast-container");
+
 	public void waitForElementToAppear(By findBy){
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(findBy));
@@ -41,6 +43,11 @@ public class AbstractComponent {
 	public void waitForElementToDisappear(WebElement webE){
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.invisibilityOf(webE));
+	}
+
+	public void waitForToastContainingText(String text){
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+		wait.until(ExpectedConditions.textToBePresentInElementLocated(toastContainer, text));
 	}
 
 	/**
