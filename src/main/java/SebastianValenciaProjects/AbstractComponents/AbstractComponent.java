@@ -29,17 +29,17 @@ public class AbstractComponent {
 	WebElement myOrders;
 
 	public void waitForElementToAppear(By findBy){
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofMinutes(5));
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(findBy));
 	}
 
 	public void waitForWebElementToAppear(WebElement findBy){
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofMinutes(5));
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfAllElements(findBy));
 	}
 
 	public void waitForElementToDisappear(WebElement webE){
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofMinutes(5));
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.invisibilityOf(webE));
 	}
 

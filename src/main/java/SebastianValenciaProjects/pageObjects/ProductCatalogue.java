@@ -54,7 +54,11 @@ public class ProductCatalogue extends AbstractComponent{
 
 	public void addProductToCart(String productName) {
 		WebElement prod = getProductByName(productName);
-		prod.findElement(addToCart).click();
+		WebElement addToCartButton = prod.findElement(addToCart);
+		// Native click required here: JS click fires before Angular's (click)
+		// handler processes the event, so the product is never added to the cart
+		// (toast shows but cart stays empty). This button is never overlaid.
+		addToCartButton.click();
 		waitForElementToAppear(toastMessage);
 		waitForElementToDisappear(spinner);
 	}

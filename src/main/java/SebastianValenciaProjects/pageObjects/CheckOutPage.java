@@ -39,11 +39,11 @@ public class CheckOutPage extends AbstractComponent{
 	public void selectCountry(String country) {
 		  a.sendKeys(countryToInput,country).build().perform();
 		  waitForElementToAppear(results);
-		  countryToselect.click();
+		  jsClick(countryToselect);
 	}
 
 	public ConfirmationPage goToSubmitPage(){
-		  submit.click();
+		  jsClick(submit);
 		  ConfirmationPage confirmationPage = new ConfirmationPage(driver);
 		  return confirmationPage;
 	}

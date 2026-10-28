@@ -32,13 +32,16 @@ public class CartPage extends AbstractComponent{
 
 	public  boolean verifyProductDisplay(String productName)
 	{
+		  // Wait for the cart items to render before checking (Angular page
+		  // transition is slower in headless CI, causing a race condition)
+		  waitForElementToAppear(item);
 		  List<WebElement> cartProducts = driver.findElements(By.cssSelector(".cartSection h3"));
 		  Boolean match = cartProducts.stream().anyMatch(cartPrduct-> cartPrduct.getText().equalsIgnoreCase(productName));
 		  return match;
 	}
 
 	public CheckOutPage goTocheckOut() {
-		goToCheckout.click();
+		jsClick(goToCheckout);
 		CheckOutPage checkOutPage = new CheckOutPage(driver);
 		return checkOutPage;
 
