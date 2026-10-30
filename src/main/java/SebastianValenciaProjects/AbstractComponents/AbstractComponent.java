@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import SebastianValenciaProjects.pageObjects.CartPage;
+import SebastianValenciaProjects.pageObjects.LandingPage;
 import SebastianValenciaProjects.pageObjects.OrderPage;
 
 public class AbstractComponent {
@@ -27,6 +28,11 @@ public class AbstractComponent {
 
 	@FindBy(css="[routerlink*='myorders']")
 	WebElement myOrders;
+
+	@FindBy(xpath="//button[normalize-space(text())=\"Sign Out\"]")
+	WebElement signOutButton;
+
+	By loginEmailField = By.id("userEmail");
 
 	By toastContainer = By.cssSelector("#toast-container");
 
@@ -71,6 +77,16 @@ public class AbstractComponent {
 		jsClick(cartHeader);
 		CartPage cartPage = new CartPage(driver);
 		return cartPage;
+	}
+
+	/**
+	 * Signs out and waits until the login page is shown again.
+	 * Returns a LandingPage ready for further interaction.
+	 */
+	public LandingPage logout() {
+		jsClick(signOutButton);
+		waitForElementToAppear(loginEmailField);
+		return new LandingPage(driver);
 	}
 
 }
