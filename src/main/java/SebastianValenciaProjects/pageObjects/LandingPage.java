@@ -40,6 +40,14 @@ public class LandingPage extends AbstractComponent{
 		return productCatalogue;
 	}
 
+	/**
+	 * Returns the "type" attribute of the password input.
+	 * Used to verify the field is masked (type="password").
+	 */
+	public String getPasswordFieldType() {
+		return userPassword.getAttribute("type");
+	}
+
 	public String getErrorMessage(){
 		waitForWebElementToAppear(errorMessage);
 		// Use JS textContent instead of getText() to get the full message
