@@ -3,6 +3,7 @@ package SebastianValenciaProjects.TestComponents;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.HashMap;
@@ -11,6 +12,7 @@ import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -20,6 +22,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
@@ -88,6 +91,25 @@ public class BaseTest {
 				options.addArguments("--headless");
 			}
 			driver = new EdgeDriver(options);
+
+		}else if(browserProp.equalsIgnoreCase("grid")) {
+			// Run through a Selenium Grid (default http://localhost:4444).
+			// The target browser is chosen with -DbrowserName=chrome|firefox|edge
+			// (default chrome); the Grid URL can be overridden with -DgridUrl=...
+			// e.g. mvn test -Dbrowser=grid -DbrowserName=firefox
+			String gridUrl = System.getProperty("gridUrl") != null
+					? System.getProperty("gridUrl") : "http://localhost:4444";
+			String targetBrowser = System.getProperty("browserName") != null
+					? System.getProperty("browserName") : "chrome";
+			MutableCapabilities capabilities;
+			if(targetBrowser.equalsIgnoreCase("firefox")) {
+				capabilities = new FirefoxOptions();
+			} else if(targetBrowser.equalsIgnoreCase("edge")) {
+				capabilities = new EdgeOptions();
+			} else {
+				capabilities = new ChromeOptions();
+			}
+			driver = new RemoteWebDriver(new URL(gridUrl), capabilities);
 
 		}else if(browserProp.equalsIgnoreCase("opera") || browserProp.equalsIgnoreCase("operaheadless")) {
 			// Opera is Chromium-based. Selenium 4 removed OperaDriver/OperaOptions,
