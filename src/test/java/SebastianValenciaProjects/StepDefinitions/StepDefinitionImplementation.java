@@ -25,7 +25,7 @@ public class StepDefinitionImplementation extends BaseTest{
 
 	@Given("I landed on Ecommerce Page")
 	public void i_landed_on_Ecommerce_Page() throws IOException {
-		landingPage = launchApplication();
+		landingPage = launchApplication("chrome");
 		//
 	}
 
