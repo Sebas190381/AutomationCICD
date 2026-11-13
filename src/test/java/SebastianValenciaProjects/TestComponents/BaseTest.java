@@ -17,9 +17,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -69,15 +73,34 @@ public class BaseTest {
 			driver = new ChromeDriver(options);
 			driver.manage().window().setSize(new Dimension(1440,900));
 
-		}else if(browserProp.equalsIgnoreCase("firefox")) {
+		}else if(browserProp.equalsIgnoreCase("firefox") || browserProp.equalsIgnoreCase("firefoxheadless")) {
 			WebDriverManager.firefoxdriver().setup();
-			 driver = new FirefoxDriver();
+			FirefoxOptions options = new FirefoxOptions();
+			if(browserProp.contains("headless")) {
+				options.addArguments("-headless");
+			}
+			driver = new FirefoxDriver(options);
 
+		}else if(browserProp.equalsIgnoreCase("edge") || browserProp.equalsIgnoreCase("edgeheadless")) {
+			WebDriverManager.edgedriver().setup();
+			EdgeOptions options = new EdgeOptions();
+			if(browserProp.contains("headless")) {
+				options.addArguments("--headless");
+			}
+			driver = new EdgeDriver(options);
 
-		}else if(browserProp.equalsIgnoreCase("edge")) {
-			System.setProperty("webdriver.edge.driver", "edge.exe");
-
-			 driver = new EdgeDriver();
+		}else if(browserProp.equalsIgnoreCase("opera") || browserProp.equalsIgnoreCase("operaheadless")) {
+			// Opera is Chromium-based. Selenium 4 removed OperaDriver/OperaOptions,
+			// so Opera is driven with ChromeDriver pointed at the Opera binary
+			// (Selenium Manager resolves chromedriver, which drives any
+			// Chromium-based browser)
+			ChromeOptions options = new ChromeOptions();
+			options.setBinary(System.getProperty("user.home") + "/Applications/Opera.app/Contents/MacOS/Opera");
+			if(browserProp.contains("headless")) {
+				options.addArguments("--headless");
+			}
+			driver = new ChromeDriver(options);
+			driver.manage().window().setSize(new Dimension(1440,900));
 
 		}
 		 if (driver != null) {
@@ -109,7 +132,14 @@ public class BaseTest {
  	}
 
 	@BeforeMethod(alwaysRun = true)
-	public LandingPage launchApplication() throws IOException{
+	@Parameters("browser")
+	public LandingPage launchApplication(@Optional("chrome") String browserParam) throws IOException{
+		// Resolution order: -Dbrowser system property (CLI/CI) wins,
+		// then the TestNG suite <parameter name="browser"> value,
+		// then GlobalData.properties as the last fallback
+		if (System.getProperty("browser") == null && browserParam != null) {
+			System.setProperty("browser", browserParam);
+		}
 		driver = initializeDriver();
 		landingPage = new LandingPage(driver);
 		landingPage.goTo();
