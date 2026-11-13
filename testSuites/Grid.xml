@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!--
+  Grid regression suite.
+  Runs every test class through a Selenium Grid via RemoteWebDriver.
+
+  Prerequisite: a Grid must be reachable. Start a local standalone Grid with:
+    java -jar selenium-server.jar standalone --port 4444
+
+  Run with:
+    mvn test -Dsurefire.suiteXmlFiles=testSuites/Grid.xml
+
+  Options:
+    -DgridUrl=http://host:4444        Grid endpoint (default http://localhost:4444)
+    -DbrowserName=firefox             Grid target browser: chrome|firefox|edge (default chrome)
+-->
+<suite name="Grid Suite" parallel="false">
+
+  <listeners>
+    <listener class-name="SebastianValenciaProjects.TestComponents.Listeners"></listener>
+  </listeners>
+
+  <test name="Grid Run">
+    <parameter name="browser" value="grid"/>
+    <classes>
+      <class name="SebastianValenciaProjects.tests.LoginTest"/>
+      <class name="SebastianValenciaProjects.tests.SubmitOrderTest"/>
+      <class name="SebastianValenciaProjects.tests.ErrorValidationsTest"/>
+      <class name="SebastianValenciaProjects.tests.AuthenticationTest"/>
+      <class name="SebastianValenciaProjects.tests.CatalogueTest"/>
+    </classes>
+  </test>
+
+</suite>
