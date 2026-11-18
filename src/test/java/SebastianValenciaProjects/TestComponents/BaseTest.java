@@ -109,12 +109,29 @@ public class BaseTest {
 					? System.getProperty("browserName")
 					: (gridTargetBrowser != null ? gridTargetBrowser : "chrome");
 			MutableCapabilities capabilities;
+			// CI runners have no display: headless unless -DgridHeaded=true
+			boolean gridHeadless = System.getProperty("gridHeaded") == null;
 			if(targetBrowser.equalsIgnoreCase("firefox")) {
-				capabilities = new FirefoxOptions();
+				FirefoxOptions firefox = new FirefoxOptions();
+				if (gridHeadless) {
+					firefox.addArguments("-headless");
+				}
+				capabilities = firefox;
 			} else if(targetBrowser.equalsIgnoreCase("edge")) {
-				capabilities = new EdgeOptions();
+				EdgeOptions edge = new EdgeOptions();
+				if (gridHeadless) {
+					edge.addArguments("--headless");
+				}
+				capabilities = edge;
 			} else {
-				capabilities = new ChromeOptions();
+				ChromeOptions chrome = new ChromeOptions();
+				if (gridHeadless) {
+					chrome.addArguments("--headless");
+				}
+				// Standard Chrome-in-CI flags: the runner's /dev/shm is too
+				// small and the sandbox can block browser startup
+				chrome.addArguments("--no-sandbox", "--disable-dev-shm-usage");
+				capabilities = chrome;
 			}
 			// Retry session creation: under load the Grid can transiently
 			// fail to start a browser (SessionNotCreatedException / slot
