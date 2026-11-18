@@ -116,7 +116,26 @@ public class BaseTest {
 			} else {
 				capabilities = new ChromeOptions();
 			}
-			driver = new RemoteWebDriver(new URL(gridUrl), capabilities);
+			// Retry session creation: under load the Grid can transiently
+			// fail to start a browser (SessionNotCreatedException / slot
+			// contention). 3 attempts with backoff makes Grid runs stable.
+			int maxAttempts = 3;
+			for (int attempt = 1; attempt <= maxAttempts; attempt++) {
+				try {
+					driver = new RemoteWebDriver(new URL(gridUrl), capabilities);
+					break;
+				} catch (org.openqa.selenium.SessionNotCreatedException e) {
+					if (attempt == maxAttempts) {
+						throw e;
+					}
+					try {
+						Thread.sleep(5000L * attempt);
+					} catch (InterruptedException ie) {
+						Thread.currentThread().interrupt();
+						throw e;
+					}
+				}
+			}
 
 		}else if(browserProp.equalsIgnoreCase("opera") || browserProp.equalsIgnoreCase("operaheadless")) {
 			// Opera is Chromium-based. Selenium 4 removed OperaDriver/OperaOptions,
@@ -185,7 +204,12 @@ public class BaseTest {
 
 	 @AfterMethod(alwaysRun = true)
 	 public void tearDown() {
-		 driver.close();
+		 // Null-safe: if @BeforeMethod failed (e.g. Grid session creation
+		 // error), driver is null. Closing a null driver used to throw an
+		 // NPE that masked the real setup failure and skipped the class.
+		 if (driver != null) {
+			 driver.close();
+		 }
 
 	 }
 }

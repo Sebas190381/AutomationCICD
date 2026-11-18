@@ -4,8 +4,8 @@
   Grid regression suite.
   Runs every test class through a Selenium Grid via RemoteWebDriver.
 
-  Prerequisite: a Grid must be reachable. Start a local standalone Grid with:
-    java -jar selenium-server.jar standalone --port 4444
+  Prerequisite: a Grid must be reachable. Start a local standalone Grid on
+  port 4444 with: java -jar selenium-server.jar standalone
 
   Run with:
     mvn test -Dsurefire.suiteXmlFiles=testSuites/Grid.xml
