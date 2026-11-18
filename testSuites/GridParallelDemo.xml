@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!--
+  DEMO: Parallel execution through the Selenium Grid.
+  Two test blocks run SIMULTANEOUSLY (parallel="tests", thread-count=2):
+  LoginTest on Chrome and LoginTest on Firefox, both via RemoteWebDriver.
+
+  Note: purchase flows (SubmitOrderTest) are intentionally excluded —
+  both browsers share the same backend account, so parallel cart
+  operations race server-side. Login flows are stateless enough to
+  parallelize safely.
+
+  Purpose: demonstrate Grid parallelism for the annual objectives evidence.
+  Run with:
+    mvn test -Dsurefire.suiteXmlFiles=testSuites/GridParallelDemo.xml \
+             -Dbrowser=grid
+-->
+<suite name="Grid Parallel Demo" parallel="tests" thread-count="2">
+
+  <listeners>
+    <listener class-name="SebastianValenciaProjects.TestComponents.Listeners"></listener>
+  </listeners>
+
+  <test name="Chrome via Grid">
+    <parameter name="browser" value="grid"/>
+    <classes>
+      <class name="SebastianValenciaProjects.tests.LoginTest"/>
+      <class name="SebastianValenciaProjects.tests.ErrorValidationsTest"/>
+    </classes>
+  </test>
+
+  <test name="Firefox via Grid">
+    <parameter name="browser" value="grid"/>
+    <classes>
+      <class name="SebastianValenciaProjects.tests.LoginTest"/>
+      <class name="SebastianValenciaProjects.tests.ErrorValidationsTest"/>
+    </classes>
+  </test>
+
+</suite>
