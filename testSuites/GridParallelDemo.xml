@@ -31,6 +31,7 @@
 
   <test name="Firefox via Grid">
     <parameter name="browser" value="grid"/>
+    <parameter name="browserName" value="firefox"/>
     <classes>
       <class name="SebastianValenciaProjects.tests.LoginTest"/>
       <class name="SebastianValenciaProjects.tests.ErrorValidationsTest"/>

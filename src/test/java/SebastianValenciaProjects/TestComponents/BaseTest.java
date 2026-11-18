@@ -42,6 +42,11 @@ import org.slf4j.bridge.SLF4JBridgeHandler;
 public class BaseTest {
 
 	public WebDriver driver;
+
+	// Grid target browser from the suite <parameter name="browserName">,
+	// used when -DbrowserName is not set. Instance-scoped so parallel
+	// <test> blocks (separate instances) don't race on it.
+	public String gridTargetBrowser;
 	public LandingPage landingPage;
 
 	// Static initializer: runs once when the class is loaded.
@@ -95,12 +100,14 @@ public class BaseTest {
 		}else if(browserProp.equalsIgnoreCase("grid")) {
 			// Run through a Selenium Grid (default http://localhost:4444).
 			// The target browser is chosen with -DbrowserName=chrome|firefox|edge
+			// (CLI/CI) or the suite <parameter name="browserName"> value
 			// (default chrome); the Grid URL can be overridden with -DgridUrl=...
 			// e.g. mvn test -Dbrowser=grid -DbrowserName=firefox
 			String gridUrl = System.getProperty("gridUrl") != null
 					? System.getProperty("gridUrl") : "http://localhost:4444";
 			String targetBrowser = System.getProperty("browserName") != null
-					? System.getProperty("browserName") : "chrome";
+					? System.getProperty("browserName")
+					: (gridTargetBrowser != null ? gridTargetBrowser : "chrome");
 			MutableCapabilities capabilities;
 			if(targetBrowser.equalsIgnoreCase("firefox")) {
 				capabilities = new FirefoxOptions();
@@ -154,13 +161,21 @@ public class BaseTest {
  	}
 
 	@BeforeMethod(alwaysRun = true)
-	@Parameters("browser")
-	public LandingPage launchApplication(@Optional("chrome") String browserParam) throws IOException{
+	@Parameters({"browser", "browserName"})
+	public LandingPage launchApplication(@Optional("chrome") String browserParam,
+			@Optional("chrome") String browserNameParam) throws IOException{
 		// Resolution order: -Dbrowser system property (CLI/CI) wins,
 		// then the TestNG suite <parameter name="browser"> value,
 		// then GlobalData.properties as the last fallback
 		if (System.getProperty("browser") == null && browserParam != null) {
 			System.setProperty("browser", browserParam);
+		}
+		// Grid target browser: -DbrowserName (CLI/CI) wins, then the
+		// TestNG suite <parameter name="browserName"> value. Stored in
+		// an instance field (not a system property) so parallel <test>
+		// blocks in the same JVM don't race on it.
+		if (System.getProperty("browserName") == null && browserNameParam != null) {
+			this.gridTargetBrowser = browserNameParam;
 		}
 		driver = initializeDriver();
 		landingPage = new LandingPage(driver);
