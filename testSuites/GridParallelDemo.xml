@@ -25,7 +25,14 @@
     <parameter name="browser" value="grid"/>
     <classes>
       <class name="SebastianValenciaProjects.tests.LoginTest"/>
-      <class name="SebastianValenciaProjects.tests.ErrorValidationsTest"/>
+      <class name="SebastianValenciaProjects.tests.ErrorValidationsTest">
+        <methods>
+          <!-- ProductErrorValidation adds a product to the cart; both
+               browsers share the same backend account, so it is not
+               parallel-safe. LoginErrorValidation is stateless. -->
+          <exclude name="ProductErrorValidation"/>
+        </methods>
+      </class>
     </classes>
   </test>
 
@@ -34,7 +41,11 @@
     <parameter name="browserName" value="firefox"/>
     <classes>
       <class name="SebastianValenciaProjects.tests.LoginTest"/>
-      <class name="SebastianValenciaProjects.tests.ErrorValidationsTest"/>
+      <class name="SebastianValenciaProjects.tests.ErrorValidationsTest">
+        <methods>
+          <exclude name="ProductErrorValidation"/>
+        </methods>
+      </class>
     </classes>
   </test>
 
