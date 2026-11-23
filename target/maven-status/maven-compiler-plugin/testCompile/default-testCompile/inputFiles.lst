@@ -3,6 +3,9 @@
 /Users/sebastian.valencia/Documents/AutomationCICD/src/test/java/SebastianValenciaProjects/TestComponents/Listeners.java
 /Users/sebastian.valencia/Documents/AutomationCICD/src/test/java/SebastianValenciaProjects/TestComponents/Retry.java
 /Users/sebastian.valencia/Documents/AutomationCICD/src/test/java/SebastianValenciaProjects/data/DataReader.java
+/Users/sebastian.valencia/Documents/AutomationCICD/src/test/java/SebastianValenciaProjects/tests/AuthenticationTest.java
+/Users/sebastian.valencia/Documents/AutomationCICD/src/test/java/SebastianValenciaProjects/tests/CatalogueTest.java
 /Users/sebastian.valencia/Documents/AutomationCICD/src/test/java/SebastianValenciaProjects/tests/ErrorValidationsTest.java
+/Users/sebastian.valencia/Documents/AutomationCICD/src/test/java/SebastianValenciaProjects/tests/LoginTest.java
 /Users/sebastian.valencia/Documents/AutomationCICD/src/test/java/SebastianValenciaProjects/tests/SubmitOrderTest.java
 /Users/sebastian.valencia/Documents/AutomationCICD/src/test/java/cucumber/TestNGTestRunner.java
