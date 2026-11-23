@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!--
+  E2E DEMO: single end-to-end purchase flow through the Selenium Grid.
+
+  One test (E2EDemoTest.fullPurchaseFlow) walks the complete journey:
+  login -> catalogue -> add to cart -> verify cart -> checkout ->
+  select country -> place order -> verify confirmation -> order history.
+
+  Prerequisite: a Grid must be reachable. Start a local standalone Grid:
+    java -jar selenium-server.jar standalone (port 4444)
+
+  Run with:
+    mvn test -Dsurefire.suiteXmlFiles=testSuites/E2EDemo.xml -Dbrowser=grid
+
+  Options:
+    -DgridUrl=http://host:4444   Grid endpoint (default http://localhost:4444)
+    -DgridHeaded=true            show the browser (default: headless)
+-->
+<suite name="E2E Demo Suite" parallel="false">
+
+  <listeners>
+    <listener class-name="SebastianValenciaProjects.TestComponents.Listeners"></listener>
+  </listeners>
+
+  <test name="E2E Purchase Flow Demo">
+    <parameter name="browser" value="grid"/>
+    <classes>
+      <class name="SebastianValenciaProjects.tests.E2EDemoTest"/>
+    </classes>
+  </test>
+
+</suite>
