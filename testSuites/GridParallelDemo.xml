@@ -15,7 +15,7 @@
     mvn test -Dsurefire.suiteXmlFiles=testSuites/GridParallelDemo.xml \
              -Dbrowser=grid
 -->
-<suite name="Grid Parallel Demo" parallel="tests" thread-count="2">
+<suite name="Grid Parallel Demo" parallel="tests" thread-count="4">
 
   <listeners>
     <listener class-name="SebastianValenciaProjects.TestComponents.Listeners"></listener>
@@ -37,6 +37,31 @@
   </test>
 
   <test name="Firefox via Grid">
+    <parameter name="browser" value="grid"/>
+    <parameter name="browserName" value="firefox"/>
+    <classes>
+      <class name="SebastianValenciaProjects.tests.LoginTest"/>
+      <class name="SebastianValenciaProjects.tests.ErrorValidationsTest">
+        <methods>
+          <exclude name="ProductErrorValidation"/>
+        </methods>
+      </class>
+    </classes>
+  </test>
+
+  <test name="Chrome via Grid (2nd cycle)">
+    <parameter name="browser" value="grid"/>
+    <classes>
+      <class name="SebastianValenciaProjects.tests.LoginTest"/>
+      <class name="SebastianValenciaProjects.tests.ErrorValidationsTest">
+        <methods>
+          <exclude name="ProductErrorValidation"/>
+        </methods>
+      </class>
+    </classes>
+  </test>
+
+  <test name="Firefox via Grid (2nd cycle)">
     <parameter name="browser" value="grid"/>
     <parameter name="browserName" value="firefox"/>
     <classes>
