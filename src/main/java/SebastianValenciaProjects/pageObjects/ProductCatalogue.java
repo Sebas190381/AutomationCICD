@@ -1,13 +1,19 @@
 package SebastianValenciaProjects.pageObjects;
 
+import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
+import org.openqa.selenium.ElementNotInteractableException;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import SebastianValenciaProjects.AbstractComponents.AbstractComponent;
 
@@ -29,6 +35,12 @@ public class ProductCatalogue extends AbstractComponent{
 
 	@FindBy(css=".ng-animating")
 	WebElement spinner;
+
+	@FindBy(css="input[placeholder='search']")
+	WebElement searchInput;
+
+	@FindBy(css="[routerlink*='cart'] label")
+	WebElement cartBadge;
 
 
 
@@ -55,16 +67,73 @@ public class ProductCatalogue extends AbstractComponent{
 	public void addProductToCart(String productName) {
 		WebElement prod = getProductByName(productName);
 		WebElement addToCartButton = prod.findElement(addToCart);
+		// Capture the badge before the click so we can detect the change
+		String badgeBefore = cartBadge.getText().trim();
 		// Native click required here: JS click fires before Angular's (click)
 		// handler processes the event, so the product is never added to the cart
 		// (toast shows but cart stays empty). This button is never overlaid.
-		addToCartButton.click();
-		// Wait for the ADD toast text, not just any toast: the "Login
-		// Successfully" toast is still visible at this point, so a plain
-		// visibility wait passes before the product is actually added
-		// (race condition that leaves the cart empty in headless CI)
-		waitForToastContainingText("Product Added To Cart");
+		// Cross-browser signal: wait for the cart badge to change. Firefox
+		// headless renders the toast with empty text, so a toast-text wait
+		// times out there even though the add succeeded. The badge only
+		// increments after the add commits, so this also covers the Chrome
+		// race where the "Login Successfully" toast was still visible.
+		// Occasionally the click is swallowed (catalogue re-render in
+		// Firefox headless), so retry the click up to 3 times.
+		for (int attempt = 0; attempt < 3; attempt++) {
+			try {
+				addToCartButton.click();
+			} catch (ElementClickInterceptedException e) {
+				// The full-screen loading spinner can overlay the button
+				// right after login — wait for it to clear, then retry
+				waitForElementToDisappear(spinner);
+			}
+			try {
+				new WebDriverWait(driver, Duration.ofSeconds(5))
+						.until(d -> !cartBadge.getText().trim().equals(badgeBefore));
+				break; // add committed
+			} catch (TimeoutException e) {
+				if (attempt == 2) {
+					throw e;
+				}
+			}
+		}
 		waitForElementToDisappear(spinner);
+	}
+
+	/**
+	 * Types a search term into the catalogue search box and waits for
+	 * the product list to re-render with the filtered results.
+	 */
+	public void searchProduct(String searchTerm) {
+		// The search box lives in the filter sidebar, which is off-viewport
+		// in headless CI — scroll it into view before interacting
+		((JavascriptExecutor) driver).executeScript(
+				"arguments[0].scrollIntoView({block:'center'});", searchInput);
+		try {
+			searchInput.clear();
+			searchInput.sendKeys(searchTerm);
+		} catch (ElementNotInteractableException e) {
+			// Fallback: set the value via JS and fire the 'input' event so
+			// Angular's ngModel picks it up (same headless limitation)
+			((JavascriptExecutor) driver).executeScript(
+					"arguments[0].value = arguments[1];"
+					+ "arguments[0].dispatchEvent(new Event('input', {bubbles:true}));",
+					searchInput, searchTerm);
+		}
+		// Angular filters the list asynchronously; wait until no visible
+		// product contradicts the filter (list re-rendered)
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		wait.until(d -> getProductList().stream()
+				.allMatch(p -> p.getText().toLowerCase().contains(searchTerm.toLowerCase())));
+	}
+
+	/**
+	 * Returns the cart badge count from the navbar.
+	 * Returns 0 when the badge label is empty (no items in cart).
+	 */
+	public int getCartBadgeCount() {
+		String badgeText = cartBadge.getText().trim();
+		return badgeText.isEmpty() ? 0 : Integer.parseInt(badgeText);
 	}
 
 }

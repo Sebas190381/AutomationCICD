@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!--
+  Cross-browser regression suite.
+  Runs every test class three times: Chrome, Firefox and Opera (all headless).
+  Run with:  mvn test -Dsurefire.suiteXmlFiles=testSuites/CrossBrowser.xml
+  A -Dbrowser=... CLI flag overrides the suite parameter (useful for CI).
+-->
+<!-- Sequential execution: both browsers share the same backend account,
+     so parallel runs interfere server-side (cart state races). -->
+<suite name="CrossBrowser Suite" parallel="false">
+
+  <listeners>
+    <listener class-name="SebastianValenciaProjects.TestComponents.Listeners"></listener>
+  </listeners>
+
+  <test name="Chrome Run" thread-count="1">
+    <parameter name="browser" value="chromeheadless"/>
+    <classes>
+      <class name="SebastianValenciaProjects.tests.LoginTest"/>
+      <class name="SebastianValenciaProjects.tests.SubmitOrderTest"/>
+      <class name="SebastianValenciaProjects.tests.ErrorValidationsTest"/>
+      <class name="SebastianValenciaProjects.tests.AuthenticationTest"/>
+      <class name="SebastianValenciaProjects.tests.CatalogueTest"/>
+    </classes>
+  </test>
+
+  <test name="Firefox Run">
+    <parameter name="browser" value="firefoxheadless"/>
+    <classes>
+      <class name="SebastianValenciaProjects.tests.LoginTest"/>
+      <class name="SebastianValenciaProjects.tests.SubmitOrderTest"/>
+      <class name="SebastianValenciaProjects.tests.ErrorValidationsTest"/>
+      <class name="SebastianValenciaProjects.tests.AuthenticationTest"/>
+      <class name="SebastianValenciaProjects.tests.CatalogueTest"/>
+    </classes>
+  </test>
+
+  <test name="Opera Run">
+    <parameter name="browser" value="operaheadless"/>
+    <classes>
+      <class name="SebastianValenciaProjects.tests.LoginTest"/>
+      <class name="SebastianValenciaProjects.tests.SubmitOrderTest"/>
+      <class name="SebastianValenciaProjects.tests.ErrorValidationsTest"/>
+      <class name="SebastianValenciaProjects.tests.AuthenticationTest"/>
+      <class name="SebastianValenciaProjects.tests.CatalogueTest"/>
+    </classes>
+  </test>
+
+</suite>
