@@ -21,6 +21,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterMethod;
@@ -123,6 +124,11 @@ public class BaseTest {
 					edge.addArguments("--headless");
 				}
 				capabilities = edge;
+			} else if(targetBrowser.equalsIgnoreCase("safari")) {
+				// Safari cannot run headless (safaridriver limitation),
+				// so it always runs headed. macOS only.
+				SafariOptions safari = new SafariOptions();
+				capabilities = safari;
 			} else {
 				ChromeOptions chrome = new ChromeOptions();
 				if (gridHeadless) {
