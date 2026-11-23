@@ -88,7 +88,9 @@ public class ProductCatalogue extends AbstractComponent{
 				waitForElementToDisappear(spinner);
 			}
 			try {
-				new WebDriverWait(driver, Duration.ofSeconds(5))
+				// 10s: CI runners are much slower than local machines —
+				// a 5s wait timed out in CI even though the add committed
+				new WebDriverWait(driver, Duration.ofSeconds(10))
 						.until(d -> !cartBadge.getText().trim().equals(badgeBefore));
 				break; // add committed
 			} catch (TimeoutException e) {
